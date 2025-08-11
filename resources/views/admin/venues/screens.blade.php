@@ -1,0 +1,88 @@
+
+@extends('admin.layout.master')
+@section('content')
+@section('title', 'View Venue Screens')
+@php $page = 'screens'; @endphp
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row mt-2">
+                <div class="col-md-6 float-start">
+                    <h4 class="m-0 text-dark text-muted">Venue</h4>
+                </div>
+                <div class="col-md-6">
+                    <ol class="breadcrumb float-end">
+                        <li class="breadcrumb-item"><a href="#"> Home</a></li>
+                        <li class="breadcrumb-item active">Venue</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="content">
+                <div class="canvas-wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                @include('admin.venues.side_inc')
+                                <div class="col-md-9 col-xl-9">
+                                    <div class="card">
+                                        <div class="card-header bg-white">
+                                            <h5 class="card-title mb-0 text-muted">View Venue Screens</h5>
+                                        </div>
+                                        <div class="card-body h-100">
+                                             <div class="card">
+                                                <div class="content" id="tableContent">
+
+                                                    <div class="canvas-wrapper">
+
+                                                        <table id="example" class="table no-margin" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>S/N</th>
+                                                                    <th>Name</th>
+                                                                    <th>Code</th>
+                                                                    <th>Orientation</th>
+                                                                    <th>Resolution</th>
+                                                                    <th>Daily Rate</th>
+                                                                    <th>Status</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($screens as $index => $val)
+                                                                    <tr>
+                                                                        <td>{{$index+1}}</td>
+                                                                        <td>{{$val->name}}</td>
+                                                                        <td>{{$val->code}}</td>
+                                                                        <td>{{$val->orientation}}</td>
+                                                                        <td>{{$val->resolution}}</td>
+                                                                        <td>{{$val->daily_rate}}</td>
+                                                                        <td>{{$val->status}}</td>
+                                                                        <td><a href="{{route('admin.screens.view',$val->id)}}"><span><i class="fa fa-eye"></i></span></a></td>
+                                                                    </tr>
+                                                                @endforeach
+
+
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+                <!-- 							Canvas Wrapper End -->
+
+            </div>
+        </div>
+    </div>
+@endsection
+
+
