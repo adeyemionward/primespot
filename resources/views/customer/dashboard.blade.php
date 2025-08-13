@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <a class="text-primary float-end" href="{{route('customer.bookings.pending')}}"><i
-                                            class="blue" data-feather="chevrons-right"></i></a>
+                                            class="blue" data-feather="chevrons-right"></i>See Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -130,8 +130,8 @@
                                 </div>
                                 <div class="col-sm-8">
                                     <div class="detail">
-                                        <p class="detail-subtitle">Total Screens</p>
-                                        <span class="number">{{$stats['total_screens']}}</span>
+                                        <p class="detail-subtitle">Ongoing Bookings</p>
+                                        <span class="number">{{$stats['ongoing_bookings']}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
                                         <i data-feather="calendar"></i>
                                     </div>
                                     <div class="col-md-6">
-                                        <a class="text-primary float-end" href=""><i
+                                        <a class="text-primary float-end" href="{{route('customer.bookings.ongoing')}}"><i
                                             class="blue" data-feather="chevrons-right"></i>See Details</a>
                                     </div>
                                 </div>
@@ -172,6 +172,8 @@
                                                     <th>Customer</th>
                                                     <th>Screen</th>
                                                     <th>Daily Rate</th>
+                                                    <th>Start Date</th>
+                                                    <th>End Date</th>
                                                     <th>Days</th>
                                                     <th>Amount</th>
                                                 </tr>
@@ -182,9 +184,12 @@
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$val->user->name}}</td>
                                                         <td>{{$val->screen->name}}</td>
-                                                        <td>#{{$val->screen->daily_rate}}</td>
+                                                        <td>₦{{$val->screen->daily_rate}}</td>
+                                                        <td>{{$val->start_date}}</td>
+                                                        <td>{{$val->end_date}}</td>
                                                         <td>{{$val->days}} Days</td>
-                                                        <td class="text-right">#{{$val->screen->daily_rate * $val->days }}</td>
+                                                        <td class="text-right">₦{{$val->screen->daily_rate * $val->days }}</td>
+                                                        <td><a href="{{route('customer.bookings.view',$val->id)}}"><span><i class="fa fa-eye"></i></span></a></td>
                                                     </tr>
                                                 @endforeach
 

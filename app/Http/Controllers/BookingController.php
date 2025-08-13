@@ -109,7 +109,6 @@ class BookingController extends Controller
     }
 
 
-
     public function create()
     {
         $venues = Venue::with('screens')->get();
@@ -292,5 +291,13 @@ class BookingController extends Controller
         } else {
             return redirect()->back()->with('flash_error', 'An error occurred while updating the booking. Please try again.');
         }
+    }
+
+    public function orderInvoicePdf($id){
+
+        $booking =  Booking::where('id', $id)->first();
+
+        $pdf = PDF::loadView('booking_invoice_pdf',compact('booking'));
+        return $pdf->stream('booking_invoice.pdf');
     }
 }

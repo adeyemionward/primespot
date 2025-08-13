@@ -26,6 +26,7 @@ class DashboardController extends Controller
             'all_bookings' => Booking::where('user_id',$user->id)->count(),
             'completed_bookings' => Booking::with(['user', 'screen.venue'])->whereDate('end_date', '<', now())->where('user_id',$user->id)->count(),
             'pending_bookings' => Booking::with(['user', 'screen.venue'])->whereDate('start_date', '>', now())->where('user_id',$user->id)->count(),
+            'ongoing_bookings' => Booking::with(['user', 'screen.venue'])->whereDate('start_date', '<=', now())->whereDate('end_date', '>=', now())->where('user_id',$user->id)->count(),
             'total_screens' => Screen::count(),
         ];
 

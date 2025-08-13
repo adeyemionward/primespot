@@ -8,8 +8,8 @@
         <div class="card-body text-center">
             <!--<h5 class="card-title mb-3 text-primary">Select Entity</h5> -->
 
-            <div class="nav nav-pills flex-column bg-white"
-                id="nav-tab" role="tablist">
+            <div class="nav nav-pills flex-column bg-white" id="nav-tab" role="tablist">
+
                 <a class="nav-link <?php if($page == 'view') echo 'active active_red'  ?>"
                     href="{{route('admin.bookings.view', request()->id)}}" aria-selected="false">
                     View Booking</a>
@@ -21,8 +21,12 @@
                <div class="dropdown-divider"></div>
 
                  <a class="nav-link" style="cursor: pointer" id="nav-database-tab" data-bs-toggle="modal" data-bs-target="#exampleModal"
-
                     aria-selected="false">Update Payment Status </a>
+
+                <a class="nav-link "
+                    href="{{route('booking_invoice_pdf',request()->id)}}" aria-selected="false">
+                    Download Invoice</a>
+                   <div class="dropdown-divider"></div>
 
 
             </div>

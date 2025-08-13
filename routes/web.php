@@ -68,6 +68,9 @@ Route::group(['namespace' => 'App\Http\Controllers'],  function () {
             Route::post('/payment_status/{id}', 'BookingController@payment_status')->name('payment_status');
             Route::get('/deactivate/{id}', 'BookingController@deactivate')->name('deactivate');
             Route::get('/activate/{id}', 'BookingController@activate')->name('activate');
+
+
+
         });
 
         Route::group(['prefix' => '/users', 'as' => 'users.'], function () {
@@ -122,8 +125,14 @@ Route::group(['namespace' => 'App\Http\Controllers'],  function () {
             Route::post('/edit_role/{id}', 'RoleController@update')->name('edit_role');
             Route::get('/delete_role/{id}', 'RoleController@destroy')->name('delete_role');
         });
+
+
     });
+
+
+    Route::get('/booking_invoice_pdf/{id?}', 'BookingController@orderInvoicePdf')->name('booking_invoice_pdf');
 });
+
 
 
     // customer
