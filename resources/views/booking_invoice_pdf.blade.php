@@ -66,29 +66,29 @@
       <tr>
         <td>
             <table width="100%" border="1" cellpadding="0" cellspacing="0">
-                
+
 
                 <tr class="det">
                     <td width="20%" class="question">Screen :</td>
                     <td>{{$booking->screen->name ?? 'N/A'}}</td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">Venue :</td>
                     <td>{{$booking->screen->venue->name ?? 'N/A'}}</td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">Date :</td>
                     <td>{{$booking->start_date}} to {{$booking->end_date}}</td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">No of Days :</td>
-                    <td>{{$booking->days}} </td>
+                    <td>{{$booking->days}} Days </td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question"> Daily Rate :</td>
-                    <td>{{$booking->screen->daily_rate}} </td>
+                    <td>#{{$booking->screen->daily_rate}} </td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">Amount :</td>
                     <td>#{{$booking->screen->daily_rate * $booking->days}}</td>
                 </tr>

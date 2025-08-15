@@ -76,23 +76,23 @@
                     <td width="20%" class="question">Screen :</td>
                     <td>{{$orderDetails->screen->name ?? 'N/A'}}</td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">Venue :</td>
                     <td>{{$orderDetails->screen->venue->name ?? 'N/A'}}</td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">Date :</td>
                     <td>{{$orderDetails->start_date}} to {{$orderDetails->end_date}}</td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">No of Days :</td>
-                    <td>{{$orderDetails->days}} </td>
+                    <td>{{$orderDetails->days}} Days</td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question"> Daily Rate :</td>
-                    <td>{{$orderDetails->screen->daily_rate}} </td>
+                    <td>#{{$orderDetails->screen->daily_rate}} </td>
                 </tr>
-                <tr class="det">
+                <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">Amount :</td>
                     <td>#{{$orderDetails->screen->daily_rate * $orderDetails->days}}</td>
                 </tr>
