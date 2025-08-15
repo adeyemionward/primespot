@@ -64,27 +64,36 @@
         </td>
     </tr><br>
       <tr>
-        <td><table width="100%" border="1" cellpadding="0" cellspacing="0">
-            <tr>
-                <td bgcolor="#E3E3E3" height="28" style="padding-left: 20px">Screen</td>
-                <td bgcolor="#E3E3E3" height="28" align="right">Venue</td>
-                {{-- <td bgcolor="#E3E3E3" height="28"  align="right">Content</td> --}}
-                {{-- <td bgcolor="#E3E3E3" height="28" align="right">Total Amount</td> --}}
-                <td bgcolor="#E3E3E3" height="28"  align="right">Amount</td>
-            </tr>
+        <td>
+            <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                
 
-            <tr style="border-bottom: 1px solid #ccc;">
-                <td align="left" width="20" style="padding-left: 20px">{{$booking->screen->name}}</td>
-                <td align="right" width="25">{{$booking->screen->venue->name}}</td>
-                {{-- <td align="right" width="25"> {{$booking->content}}</td> --}}
-
-                <td align="right" width="15"> #{{$booking->screen->daily_rate * $booking->days}}</td>
-
-            </tr>
-             <td align="right" width="15"> From {{$booking->start_date}} to {{$booking->end_date}} ({{$booking->days}}) Days</td>
-
-        </table>
-    </td>
+                <tr class="det">
+                    <td width="20%" class="question">Screen :</td>
+                    <td>{{$booking->screen->name ?? 'N/A'}}</td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">Venue :</td>
+                    <td>{{$booking->screen->venue->name ?? 'N/A'}}</td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">Date :</td>
+                    <td>{{$booking->start_date}} to {{$booking->end_date}}</td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">No of Days :</td>
+                    <td>{{$booking->days}} </td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question"> Daily Rate :</td>
+                    <td>{{$booking->screen->daily_rate}} </td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">Amount :</td>
+                    <td>#{{$booking->screen->daily_rate * $booking->days}}</td>
+                </tr>
+            </table>
+        </td>
       </tr>
       <tr>
         <td>&nbsp;</td>

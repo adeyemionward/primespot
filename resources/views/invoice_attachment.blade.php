@@ -64,26 +64,39 @@
         </td>
     </tr><br>
       <tr>
-        <td><table width="100%" border="1" cellpadding="0" cellspacing="0">
-            <tr>
-                <td bgcolor="#E3E3E3" height="28" style="padding-left: 20px">Screen</td>
-                <td bgcolor="#E3E3E3" height="28" align="right">Venue</td>
-                {{-- <td bgcolor="#E3E3E3" height="28"  align="right">Content</td> --}}
-                {{-- <td bgcolor="#E3E3E3" height="28" align="right">Total Amount</td> --}}
-                <td bgcolor="#E3E3E3" height="28"  align="right">Amount</td>
-            </tr>
-           
-            <tr style="border-bottom: 1px solid #ccc;">
-                <td align="left" width="20" style="padding-left: 20px">{{$orderDetails->screen->name}}</td>
-                <td align="right" width="25">{{$orderDetails->screen->venue->name}}</td>
-                {{-- <td align="right" width="25"> {{$orderDetails->content}}</td> --}}
+        <td>
 
-                <td align="right" width="15"> #{{$orderDetails->screen->daily_rate * $orderDetails->days}}</td>
-               
-            </tr>
-             <td align="right" width="15"> From {{$orderDetails->start_date}} to {{$orderDetails->end_date}} ({{$orderDetails->days}}) Days</td>
 
-        </table>
+
+
+         <table width="100%" border="1" cellpadding="0" cellspacing="0">
+
+
+                <tr class="det">
+                    <td width="20%" class="question">Screen :</td>
+                    <td>{{$orderDetails->screen->name ?? 'N/A'}}</td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">Venue :</td>
+                    <td>{{$orderDetails->screen->venue->name ?? 'N/A'}}</td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">Date :</td>
+                    <td>{{$orderDetails->start_date}} to {{$orderDetails->end_date}}</td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">No of Days :</td>
+                    <td>{{$orderDetails->days}} </td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question"> Daily Rate :</td>
+                    <td>{{$orderDetails->screen->daily_rate}} </td>
+                </tr>
+                <tr class="det">
+                    <td width="20%" class="question">Amount :</td>
+                    <td>#{{$orderDetails->screen->daily_rate * $orderDetails->days}}</td>
+                </tr>
+            </table>
     </td>
       </tr>
       <tr>
@@ -99,7 +112,7 @@
                 Bank : ECOBANK <br> Acc/No: NAIRA ACCOUNT: 4933060877 <br>Account Name: PRINTLABS LTD</td>
             <td width="30" align="right">&nbsp;<span style="font-size:20px; padding-right:10px"><span style="font-weight:bold; ">Total Amount:</span> #{{$orderDetails->screen->daily_rate * $orderDetails->days}} </td>
           </tr>
-          
+
         </table></td>
       </tr>
       <br> <br>
