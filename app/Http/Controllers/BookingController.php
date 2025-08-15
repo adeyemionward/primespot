@@ -282,7 +282,7 @@ class BookingController extends Controller
 
             try {
                 // Uncomment and use mailer logic here
-                // Mail::to($userEmail)->send(new CustomerOrderReceipt($userDetails, $booking, $pdf_attachment));
+                Mail::to($userEmail)->send(new CustomerOrderReceipt($userDetails, $booking, $pdf_attachment));
             } catch (\Exception $e) {
                 Log::error('Failed to send email: ' . $e->getMessage());
             }
