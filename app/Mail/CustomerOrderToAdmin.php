@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+
 class CustomerOrderToAdmin extends Mailable
 {
     use Queueable, SerializesModels;
@@ -18,15 +19,13 @@ class CustomerOrderToAdmin extends Mailable
      *
      * @return void
      */
-    public $orderDetails;
-    public $amount_paid;
-    public $userName;
+    public $userDetails;
+    public $booking;
     public $pdf_attachment;
-    public function __construct($orderDetails, $amount_paid, $userName, $pdf_attachment)
+    public function __construct($userDetails, $booking, $pdf_attachment)
     {
-        $this->orderDetails  = $orderDetails;
-        $this->amount_paid   = $amount_paid;
-        $this->userName      = $userName;
+        $this->userDetails  = $userDetails;
+        $this->booking   = $booking;
         $this->pdf_attachment      = $pdf_attachment;
     }
 
@@ -38,7 +37,7 @@ class CustomerOrderToAdmin extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Customer Order Receipt',
+            subject: 'Customer Booking Receipt',
         );
     }
 
@@ -47,16 +46,28 @@ class CustomerOrderToAdmin extends Mailable
      *
      * @return \Illuminate\Mail\Mailables\Content
      */
+    // public function content()
+    // {
+    //     return new Content(
+    //         view: 'testmail',
+    //         orderDetails: $this->orderDetails,
+    //     );
+    // }
+
     public function build()
     {
         return $this->view('mail.ordermailtoadmin')
                     ->with([
-                        'orderDetails' => $this->orderDetails,
-                        'amount_paid' => $this->amount_paid,
-                        'userName' => $this->userName,
-                    ])->attachData($this->pdf_attachment->output(), 'printLabs-invoice.pdf');
+                        'orderDetails' => $this->booking,
+                        'userDetails' => $this->userDetails,
+                    ])->attachData($this->pdf_attachment->output(), 'primespot-invoice.pdf');
     }
 
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array
+     */
     public function attachments()
     {
         return [];

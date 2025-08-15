@@ -36,7 +36,7 @@ class CustomerOrderReceipt extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Customer Order Receipt',
+            subject: 'Customer Booking Receipt',
         );
     }
 

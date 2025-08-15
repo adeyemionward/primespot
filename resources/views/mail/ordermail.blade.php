@@ -160,7 +160,7 @@
 					<table style="padding-left: 30px; margin-bottom: 20px;" width="100%">
 						<tr class="center">
 							<td style="font-size: small; font-weight: 600; color: #4a4a4a; padding-top: 10px;">
-								If you have any query, kindly send us an email on <a  href="mailto:info@primespot.net.ng">info@primespot.com.ng</a>
+								If you have any query, kindly send us an email on <a  href="mailto:info@primespot.net.ng">info@primespot.net.ng</a>
 							</td>
 						</tr>
 

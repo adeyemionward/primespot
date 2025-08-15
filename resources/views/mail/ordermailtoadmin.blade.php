@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="x-apple-diasble-message-reformatting">
-	<title>PrintLabs</title>
+	<title>primespot</title>
 	<style type="text/css">
 		body {
 			margin: 0;
@@ -92,8 +92,8 @@
 					<table width="100%">
 						<tr>
 							<td align="center">
-								<a href="www.printlabs.com.ng">
-									<img src="https://printlabs.com.ng/img/printlab.PNG" alt="printlabs logo" width="180" title="printlabs logo" />
+								<a href="www.primespot.net.ng">
+									<img src="{{asset('img/primespot_logo.png')}}" alt="primespot logo" width="180" />
 								</a>
 							</td>
 						</tr>
@@ -140,7 +140,7 @@
                         <tr>
                             <td style="; font-weight: 600; padding-top: 20px;">The summary of the new order is in the attached Pdf</td>
 						</tr>
-                        
+
 					</table> <br> <br>
 					<table style="padding-left: 30px; padding-bottom: 20px;" width="100%">
 
@@ -150,25 +150,6 @@
 
 				</td>
 			</tr>
-{{--
-			<tr>
-				<td>
-
-					<table style="padding-left: 30px; margin-bottom: 20px;" width="100%">
-						<tr class="center">
-							<td style="font-size: small; font-weight: 600; color: #4a4a4a; padding-top: 10px;">
-								If you have any query, kindly send us an email on <a  href="mailto:info@printlabs.com.ng">info@printlabs.com.ng</a>
-							</td>
-						</tr>
-
-						<tr class="center">
-							<td style="font-size: small; font-weight: 600; color: #4a4a4a; padding-top: 10px;">
-								 Thanks for using PrintLabs.
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr> --}}
 
 			<!-- GRAY BORDER -->
 			<tr>
@@ -185,8 +166,8 @@
 					<table width="100%">
 						<h6>
 							© Copyright @php echo date('Y') @endphp by
-							<a href="https://printlabs.com.ng/" target="_blank" style="color: #2a2a72;">
-								PrintLabs.
+							<a href="https://primespot.net.ng/" target="_blank" style="color: #2a2a72;">
+								PrimeSpot.
 							</a>
 							All Rights Reserved.
 						</h6>
@@ -197,7 +178,7 @@
 				<td class="center">
 					<table width="100%">
 
-						<img style="margin-bottom: 40px;" width="65" src="https://printlabs.com.ng/img/printlab.PNG" alt="printlabs logo" />
+						<img style="margin-bottom: 40px;" width="65" src="{{asset('img/primespot_logo.png')}}" alt="primespot logo" />
 					</table>
 				</td>
 			</tr>
