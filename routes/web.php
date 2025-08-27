@@ -68,6 +68,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],  function () {
             Route::post('/payment_status/{id}', 'BookingController@payment_status')->name('payment_status');
             Route::get('/deactivate/{id}', 'BookingController@deactivate')->name('deactivate');
             Route::get('/activate/{id}', 'BookingController@activate')->name('activate');
+            Route::DELETE('/delete_booking_item/{id}', 'BookingController@destroyBookingItem')->name('delete_booking_item');
 
 
 
