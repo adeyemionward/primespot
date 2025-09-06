@@ -285,6 +285,11 @@ form .btn input[type="submit"] {
                         window.location.replace('{{route("customer.dashboard")}}');
                     },2000)
 
+                }else if(data == 2){
+                         toastr.success("Login Successful");
+                    setInterval(function(){
+                        window.location.replace('{{route("vendor.dashboard")}}');
+                    },2000)
                 }else if(data == 11){
                     toastr.success("Login Successful");
                     setInterval(function(){

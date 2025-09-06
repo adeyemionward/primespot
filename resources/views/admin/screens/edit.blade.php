@@ -100,10 +100,18 @@
                                                                             @enderror
                                                                         </div>
 
-                                                                        <div class="form-group mt-3 mb-3 col-md-6">
+                                                                        <div class="form-group mt-3 mb-3 col-md-3">
                                                                             <label for="daily_rate">Daily Rate:</label>
                                                                             <input type="text" name="daily_rate" id="resolution" class="form-control{{ $errors->has('daily_rate') ? ' is-invalid' : '' }}" value="{{ old('daily_rate', $screen->daily_rate) }}">
                                                                             @error('daily_rate')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+
+                                                                        <div class="form-group mt-3 mb-3 col-md-3">
+                                                                            <label for="commission_rate">Commission Rate:</label>
+                                                                            <input type="number" name="commission_rate" id="commission_rate" class="form-control{{ $errors->has('commission_rate') ? ' is-invalid' : '' }}" value="{{ old('commission_rate', $screen->commission_rate) }}">
+                                                                            @error('commission_rate')
                                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                                             @enderror
                                                                         </div>

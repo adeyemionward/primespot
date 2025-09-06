@@ -236,8 +236,8 @@ class BookingController extends Controller
 
             // Handle media upload
             $media_path_original = null;
-            
-        
+
+
 
             if (isset($venuesFiles[$index]['media_path'])) {
                 $media = $venuesFiles[$index]['media_path'];
@@ -247,13 +247,15 @@ class BookingController extends Controller
                 }
             }
 
-
             // Create booking item
             BookingItem::create([
                 'user_id' => $request->user_id,
                 'booking_id' => $booking->id,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'venue_id' => $venueId,
                 'screen_id' => $screenId,
+                'host_id' => $screen->host_id,
                 'amount' => $screen->daily_rate * $days,
                 'media_path' => $media_path_original,
             ]);
@@ -302,7 +304,7 @@ class BookingController extends Controller
         return redirect()->route('admin.bookings.view', ['id' => $id])->with('flash_success', 'Payment status updated successfully.');
     }
 
-   
+
 
     public function edit($id)
     {
@@ -327,8 +329,8 @@ class BookingController extends Controller
             // Difference in days (inclusive)
             $days = $start->diffInDays($end) + 1;
             $booking = Booking::with('items')->findOrFail($id);
-            
-        
+
+
             // Update main booking
             $booking->update([
                 'user_id' => $request->user_id,
@@ -348,12 +350,12 @@ class BookingController extends Controller
 
             foreach ($venues as $index => $venueData) {
                 $itemId = $venueData['id'] ?? null;
-                
+
                 $screen = Screen::where('id', $venueData['screen_id'])->first();
 
                 // Handle media file
                 $media_path_original = null;
-              
+
 
                 if (isset($venuesFiles[$index]['media_path'])) {
                     $media = $venuesFiles[$index]['media_path'];
@@ -379,9 +381,12 @@ class BookingController extends Controller
                     // Create new item
                     $newItem = BookingItem::create([
                         'booking_id' => $booking->id,
+                        'start_date' => $request->start_date,
+                        'end_date' => $request->end_date,
                         'user_id' => $request->user_id,
                         'venue_id' => $venueData['venue_id'],
                         'screen_id' => $venueData['screen_id'],
+                        'host_id' => $screen->host_id,
                         'media_path' => $media_path_original,
                         'amount' => $screen->daily_rate * $days,
                     ]);
@@ -409,7 +414,7 @@ class BookingController extends Controller
             return redirect()->back()->with('flash_error', $e->getMessage());
         }
     }
-    
+
 
 
 

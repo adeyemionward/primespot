@@ -87,8 +87,20 @@
                                                                             @enderror
                                                                         </div>
 
+                                                                        <div class="form-group mt-3 mb-3 col-md-3">
+                                                                            <label for="user_type">User Type:</label>
+                                                                            <select name="user_type" id="" class="form-select form-control{{ $errors->has('user_type') ? ' is-invalid' : '' }}" value="{{ old('user_type') }}">
+                                                                                <option value="">--Select User Type--</option>
+                                                                                <option value="2" @if($user->user_type == 2) selected @endif>Customer</option>
+                                                                                <option value="3" @if($user->user_type == 3) selected @endif>Host</option>
+                                                                            </select>
+                                                                            @error('user_type')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+
                                                                         <div class="form-group mt-3 mb-3 col-md-6">
-                                                                            <label for="phone">Company Name:</label>
+                                                                            <label for="phone">Company/Business Name:</label>
                                                                             <input type="text" name="company" id="company" class="form-control{{ $errors->has('company') ? ' is-invalid' : '' }}" value="{{ old('company', $user->company) }}">
                                                                             @error('company')
                                                                             <div class="invalid-feedback">{{ $message }}</div>

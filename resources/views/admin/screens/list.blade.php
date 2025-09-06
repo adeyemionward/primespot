@@ -25,7 +25,8 @@
                             <thead>
                                 <tr>
                                     <th>S/N</th>
-                                    <th>Name</th>
+                                    <th>Screen&nbsp;Name</th>
+                                    <th>Host&nbsp;Name</th>
                                     <th>Code</th>
                                     <th>Orientation</th>
                                     <th>Resolution</th>
@@ -39,6 +40,14 @@
                                     <tr>
                                         <td>{{$index+1}}</td>
                                         <td>{{$val->name}}</td>
+                                        <td>
+                                            @if (is_null($val->host->name ?? 'N/A' ))
+                                                N/A 
+                                            @else
+                                                <a href="">{{$val->host->name ?? 'N/A'}}</a>
+                                            @endif
+                                            
+                                        </td>
                                         <td>{{$val->code}}</td>
                                         <td>{{$val->orientation}}</td>
                                         <td>{{$val->resolution}}</td>

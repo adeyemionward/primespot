@@ -58,15 +58,20 @@
                                                                         <td>{{$screen->orientation ?? 'N/A'}}</td>
                                                                     </tr>
                                                                     <tr class="det">
-                                                                        <td width="10%" class="question">Daily Rate :</td>
+                                                                        <td width="20%" class="question">Daily Rate :</td>
                                                                         <td>₦{{$screen->daily_rate ?? 'N/A'}}</td>
+                                                                     </tr>
+
+                                                                     <tr class="det">
+                                                                        <td width="10%" class="question">Commission Rate(%) :</td>
+                                                                        <td>₦{{$screen->commission_rate ?? 'N/A'}}</td>
                                                                      </tr>
                                                                      <tr class="det">
                                                                         <td width="10%" class="question">Status :</td>
                                                                         <td>{{$screen->status ?? 'N/A'}}</td>
                                                                     </tr>
-                                                                    
-                                                                   
+
+
                                                                 </table>
                                                             </div>
                                                         </div>

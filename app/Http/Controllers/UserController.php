@@ -60,7 +60,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::where('user_type',User::CUSTOMER)->get();
+        $users = User::where('user_type', '!=',User::ADMIN)->get();
         return view('admin.users.list', compact('users'));
     }
 
@@ -96,7 +96,7 @@ class UserController extends Controller
             $user->company      = request('company');
             $user->phone        = request('phone');
             $user->status       = request('status');
-            $user->user_type    = USER::CUSTOMER;
+            $user->user_type    = request('user_type');
             $user->address      = request('address');
             $user->password     = bcrypt(request('password'));
             $user->save();

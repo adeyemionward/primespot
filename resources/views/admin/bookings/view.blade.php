@@ -50,7 +50,7 @@
                                                                         <td width="10%" class="question">Booking No :</td>
                                                                         <td>{{$booking->reference ?? 'N/A'}}</td>
                                                                     </tr>
-                                                                   
+
                                                                     <tr class="det">
                                                                         <td width="10%" class="question">Start Date :</td>
                                                                         <td>{{$booking->start_date ?? 'N/A'}}</td>
@@ -84,12 +84,12 @@
                                                                  <table id="example" class="table no-margin" style="width:100%">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>S/N</th>
                                                                             <th>Venue</th>
                                                                             <th>Screen</th>
-                                                                            <th>Start Date</th>
-                                                                            <th>End Date</th>
-                                                                            <th>Amount</th>
+                                                                            <th>Start&nbsp;Date</th>
+                                                                            <th>End&nbsp;Date</th>
+                                                                            <th>Total&nbsp;Amount</th>
+                                                                            <th>Commission&nbsp;Amount</th>
                                                                             <th>Media</th>
                                                                             <th>Action</th>
                                                                         </tr>
@@ -97,13 +97,13 @@
                                                                     <tbody>
                                                                          @foreach($bookingItems as $item)
                                                                             <tr>
-                                                                                <td>{{ $loop->iteration }}</td>
                                                                                 <td>{{ $item->venue->name ?? 'N/A' }}</td>
                                                                                 <td>{{ $item->screen->name ?? 'N/A' }}</td>
-                                                                                
+
                                                                                 <td>{{ $item->booking->start_date }}</td>
                                                                                 <td>{{ $item->booking->end_date }}</td>
                                                                                 <td>₦{{$item->amount ?? 0.00}}</td>
+                                                                                <td>₦{{($item->screen->commission_rate/100 * $item->amount) ?? 0.00}} <small>({{$item->screen->commission_rate}}%)</small></td>
                                                                                 <td>
                                                                                     @if($item->media_path)
                                                                                         <a href="{{asset('media/'.$item->media_path)}}" download style="color: blue">
@@ -118,7 +118,7 @@
                                                                                     <form action="{{ route('admin.bookings.delete_booking_item', $item->id) }}" method="POST" style="display:inline;">
                                                                                         @csrf
                                                                                         @method('DELETE')
-                                                                                        <button type="submit" class="btn btn-link text-danger p-0" 
+                                                                                        <button type="submit" class="btn btn-link text-danger p-0"
                                                                                             onclick="return confirm('Are you sure you want to delete this booking item?');">
                                                                                             <i class="fa fa-trash"></i>
                                                                                         </button>

@@ -197,6 +197,24 @@ Route::group(['namespace' => 'App\Http\Controllers\customer'],  function () {
  });
 
 
+ //vendor
+ Route::group(['namespace' => 'App\Http\Controllers\vendor'],  function () {
+    Route::group(['prefix' => '/vendor', 'as' => 'vendor.'], function () {
+        Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+        Route::group(['prefix' => '/bookings', 'as' => 'bookings.'], function () {
+            Route::get('/list', 'BookingController@list')->name('list');
+            Route::get('/completed', 'BookingController@completed')->name('completed');
+            Route::get('/pending', 'BookingController@pending')->name('pending');
+            Route::get('/ongoing', 'BookingController@ongoing')->name('ongoing');
+            Route::get('/edit/{id}', 'BookingController@edit')->name('edit');
+            Route::post('/edit/{id}', 'BookingController@update')->name('edit');
+            Route::get('/view/{id}', 'BookingController@show')->name('view');
+        });
+    });
+ });
+
+
     Route::group(['namespace' => 'App\Http\Controllers'],  function () {
 
         Route::get('login/', 'AuthController@login')->name('login');
@@ -217,8 +235,3 @@ Route::group(['namespace' => 'App\Http\Controllers\customer'],  function () {
     Route::group(['prefix' => 'api'], function() {
         Route::get('/venues/{venue}/screens', [ScreenController::class, 'getVenueScreens']);
     });
-
-
-
-
-

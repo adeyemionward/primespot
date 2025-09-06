@@ -13,4 +13,9 @@ class Screen extends Model
     {
         return $this->belongsTo(Venue::class, 'venue_id');
     }
+
+    public function host()
+    {
+        return $this->belongsTo(User::class, 'host_id');
+    }
 }

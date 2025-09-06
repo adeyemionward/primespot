@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('booking_items', function (Blueprint $table) {
             $table->id();
-             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreignId('booking_id')->constrained('bookings')->onDelete('cascade');
             $table->foreignId('venue_id')->constrained('venues')->onDelete('cascade');
             $table->foreignId('screen_id')->constrained('screens')->onDelete('cascade');

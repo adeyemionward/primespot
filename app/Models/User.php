@@ -15,6 +15,7 @@ class User extends Authenticatable
 {
     CONST ADMIN = 1;
     CONST CUSTOMER = 2;
+    CONST HOST = 3;
 
     CONST ACTIVE = 'active';
     CONST INACTIVE = 'deactivated';

@@ -59,7 +59,12 @@
 
                         return response()->json([ [1] ]); //go to customer page dashboard
 
+                    }elseif($user_type == User::HOST){
+
+                        return response()->json([ [2] ]); //go to vendor page dashboard
+
                     }elseif($user_type == User::ADMIN){
+
                         return response()->json([ [11] ]); //go to admin page dashboard
                     }
                 }else{

@@ -14,6 +14,9 @@ class BookingItem extends Model
         'booking_id',
         'venue_id',
         'screen_id',
+        'host_id',
+        'start_date',
+        'end_date',
         'media_path',
         'amount'
     ];
@@ -34,5 +37,12 @@ class BookingItem extends Model
     {
         return $this->belongsTo(Screen::class);
     }
+
+
+     public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 }

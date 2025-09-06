@@ -27,7 +27,7 @@
                                     <th>S/N</th>
                                     <th>Customer</th>
                                     {{-- <th>Venue</th>--}}
-                                    <th>Booking No</th> 
+                                    <th>Booking No</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>No of Days</th>

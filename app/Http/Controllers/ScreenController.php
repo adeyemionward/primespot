@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Screen;
+use App\Models\User;
 use App\Models\Venue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -20,24 +21,24 @@ class ScreenController extends Controller
     public function create()
     {
         $venues = Venue::all();
-        return view('admin.screens.add', compact('venues'));
+        $hosts = User::where('user_type', USER::HOST)->get();
+        return view('admin.screens.add', compact('venues','hosts'));
     }
 
     public function store(Request $request)
     {
 
-            $validate = Validator::make($request->all(), [
-                'name' => ['required', 'string', 'max:50'],
-                'code' => ['required', 'max:50'],
-                'resolution' => ['required', 'string', 'max:50'],
-                'orientation' => ['required', 'string'],
-                'status' => ['required'],
-                'venue' => ['required'],
-                'daily_rate' => ['required', 'string'],
-            ]);
+        $validate = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:50'],
+            'code' => ['required', 'max:50'],
+            'resolution' => ['required', 'string', 'max:50'],
+            'orientation' => ['required', 'string'],
+            'status' => ['required'],
+            'venue' => ['required'],
+            'daily_rate' => ['required', 'string'],
+        ]);
 
-
-        try{
+         try{
             $getScreen = Screen::where('name', $request->name)->first();
             if($getScreen){
                 return redirect()->back()->with('flash_error','Screen with this name already exists');
@@ -50,7 +51,9 @@ class ScreenController extends Controller
             $screen->orientation  = request('orientation');
             $screen->status       = request('status');
             $screen->venue_id        = request('venue');
+            $screen->host_id        = request('host_id');
             $screen->daily_rate   = request('daily_rate');
+            $screen->commission_rate   = request('commission_rate');
             $screen->save();
 
 
@@ -73,7 +76,8 @@ class ScreenController extends Controller
     {
         $screen = Screen::find($id);
         $venues = Venue::all();
-        return view('admin.screens.edit', compact('screen','venues'));
+        $hosts = User::where('user_type', USER::HOST)->get();
+        return view('admin.screens.edit', compact('screen','venues','hosts'));
     }
 
     public function update(Request $request, $id)
@@ -110,7 +114,9 @@ class ScreenController extends Controller
         $screen->orientation = $request->orientation;
         $screen->status = $request->status;
         $screen->venue_id = $request->venue;
+         $screen->host_id        = $request->host_id;
         $screen->daily_rate = $request->daily_rate;
+        $screen->commission_rate   = $request->commission_rate;
         $screen->save();
 
         if ($screen) {

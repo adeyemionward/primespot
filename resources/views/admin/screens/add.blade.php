@@ -39,7 +39,7 @@
                                                                     @csrf
                                                                     @method('POST')
                                                                     <div class="row">
-                                                                        
+
                                                                         <div class="form-group mt-3 mb-3 col-md-3">
                                                                             <label for="name">Screen Name:</label>
                                                                             <input type="text" name="name" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}">
@@ -74,7 +74,7 @@
                                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                                             @enderror
                                                                         </div>
-                                                                        <div class="form-group mt-3 mb-3 col-md-3">
+                                                                        <div class="form-group mt-3 mb-3 col-md-2">
                                                                             <label for="status">Status:</label>
                                                                             <select name="status" id="" class="form-select form-control{{ $errors->has('status') ? ' is-invalid' : '' }}" value="{{ old('status') }}">
                                                                                 <option value="">--Select Status--</option>
@@ -86,7 +86,7 @@
                                                                             @enderror
                                                                         </div>
 
-                                                                        <div class="form-group mt-3 mb-3 col-md-3">
+                                                                        <div class="form-group mt-3 mb-3 col-md-4">
                                                                             <label for="venue">Venue:</label>
                                                                             <select name="venue" id="" class="form-select form-control{{ $errors->has('venue') ? ' is-invalid' : '' }}" value="{{ old('venue') }}">
                                                                                 <option value="">--Select Venue--</option>
@@ -99,10 +99,31 @@
                                                                             @enderror
                                                                         </div>
 
-                                                                        <div class="form-group mt-3 mb-3 col-md-6">
+                                                                        <div class="form-group mt-3 mb-3 col-md-2">
+                                                                            <label for="venue">Host:</label>
+                                                                            <select name="host_id" id="" class="form-select form-control{{ $errors->has('host_id') ? ' is-invalid' : '' }}" value="{{ old('host_id') }}">
+                                                                                <option value="">--Select Host--</option>
+                                                                                @foreach ($hosts as $row)
+                                                                                    <option value="{{$row->id}}">{{$row->name}}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                            @error('host_id')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+
+                                                                        <div class="form-group mt-3 mb-3 col-md-2">
                                                                             <label for="daily_rate">Daily Rate:</label>
                                                                             <input type="text" name="daily_rate" id="resolution" class="form-control{{ $errors->has('daily_rate') ? ' is-invalid' : '' }}" value="{{ old('daily_rate') }}">
                                                                             @error('daily_rate')
+                                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+
+                                                                        <div class="form-group mt-3 mb-3 col-md-2">
+                                                                            <label for="commission_rate">Commission Rate:</label>
+                                                                            <input type="number" name="commission_rate" id="commission_rate" class="form-control{{ $errors->has('commission_rate') ? ' is-invalid' : '' }}" value="{{ old('commission_rate') }}">
+                                                                            @error('commission_rate')
                                                                             <div class="invalid-feedback">{{ $message }}</div>
                                                                             @enderror
                                                                         </div>
