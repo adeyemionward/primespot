@@ -170,8 +170,6 @@
                                                 <tr>
                                                     <th>S/N</th>
                                                     <th>Customer</th>
-                                                    <th>Screen</th>
-                                                    <th>Daily Rate</th>
                                                     <th>Start Date</th>
                                                     <th>End Date</th>
                                                     <th>Days</th>
@@ -183,12 +181,9 @@
                                                     <tr>
                                                         <td>{{$loop->iteration}}</td>
                                                         <td>{{$val->user->name}}</td>
-                                                        <td>{{$val->screen->name}}</td>
-                                                        <td>₦{{$val->screen->daily_rate}}</td>
                                                         <td>{{$val->start_date}}</td>
                                                         <td>{{$val->end_date}}</td>
                                                         <td>{{$val->days}} Days</td>
-                                                        <td class="text-right">₦{{$val->screen->daily_rate * $val->days }}</td>
                                                         <td><a href="{{route('customer.bookings.view',$val->id)}}"><span><i class="fa fa-eye"></i></span></a></td>
                                                     </tr>
                                                 @endforeach

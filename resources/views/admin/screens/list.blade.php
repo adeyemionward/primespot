@@ -1,7 +1,7 @@
 
 @extends('admin.layout.master')
 @section('content')
-@section('title', 'All Users')
+@section('title', 'All Screens')
     <div class="content">
         <div class="container-fluid">
             <div class="row mt-2">
@@ -42,16 +42,16 @@
                                         <td>{{$val->name}}</td>
                                         <td>
                                             @if (is_null($val->host->name ?? 'N/A' ))
-                                                N/A 
+                                                N/A
                                             @else
                                                 <a href="">{{$val->host->name ?? 'N/A'}}</a>
                                             @endif
-                                            
+
                                         </td>
                                         <td>{{$val->code}}</td>
                                         <td>{{$val->orientation}}</td>
                                         <td>{{$val->resolution}}</td>
-                                        <td>{{$val->daily_rate}}</td>
+                                        <td>{{number_format($val->daily_rate)}}</td>
                                         <td>{{$val->status}}</td>
                                         <td><a href="{{route('admin.screens.view',$val->id)}}"><span><i class="fa fa-eye"></i></span></a></td>
                                     </tr>

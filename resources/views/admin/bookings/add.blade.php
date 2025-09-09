@@ -38,7 +38,7 @@
                                                                 <form method="POST" action="" enctype="multipart/form-data" id="bookingForm">
                                                                     @csrf
 
-                                                                    
+
 
 
                                                                     <div class="form-group row">
@@ -147,84 +147,84 @@
         </div>
     </div>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    let groupIndex = 0;
-    const wrapper = document.getElementById('venueScreenWrapper');
-    const addBtn = document.getElementById('addVenueScreen');
+    document.addEventListener('DOMContentLoaded', function() {
+        let groupIndex = 0;
+        const wrapper = document.getElementById('venueScreenWrapper');
+        const addBtn = document.getElementById('addVenueScreen');
 
-    // Add new row
-    addBtn.addEventListener('click', function() {
-        groupIndex++;
+        // Add new row
+        addBtn.addEventListener('click', function() {
+            groupIndex++;
 
-        const newGroup = document.createElement('div');
-        newGroup.classList.add('venue-screen-group', 'row', 'g-3', 'mb-2');
-        newGroup.innerHTML = `
-            <div class="col-md-4">
-                <label>Venue</label>
-                <select class="form-control venue" name="venues[${groupIndex}][venue_id]" required>
-                    <option value="">Select Venue</option>
-                    @foreach($venues as $venue)
-                        <option value="{{ $venue->id }}">{{ $venue->name }} - {{ $venue->city }}</option>
-                    @endforeach
-                </select>
-            </div>
+            const newGroup = document.createElement('div');
+            newGroup.classList.add('venue-screen-group', 'row', 'g-3', 'mb-2');
+            newGroup.innerHTML = `
+                <div class="col-md-4">
+                    <label>Venue</label>
+                    <select class="form-control venue" name="venues[${groupIndex}][venue_id]" required>
+                        <option value="">Select Venue</option>
+                        @foreach($venues as $venue)
+                            <option value="{{ $venue->id }}">{{ $venue->name }} - {{ $venue->city }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-            <div class="col-md-3">
-                <label>Screen</label>
-                <select class="form-control screen" name="venues[${groupIndex}][screen_id]" required disabled>
-                    <option value="">Select Screen</option>
-                </select>
-            </div>
+                <div class="col-md-3">
+                    <label>Screen</label>
+                    <select class="form-control screen" name="venues[${groupIndex}][screen_id]" required disabled>
+                        <option value="">Select Screen</option>
+                    </select>
+                </div>
 
-            <div class="col-md-3">
-                <label>Media</label>
-                <input type="file" class="form-control media" name="venues[${groupIndex}][media_path]" required>
-            </div>
+                <div class="col-md-3">
+                    <label>Media</label>
+                    <input type="file" class="form-control media" name="venues[${groupIndex}][media_path]" required>
+                </div>
 
-            <div class="col-md-2 d-flex align-items-end">
-                <button type="button" class="btn btn-danger remove-group">Remove</button>
-            </div>
-        `;
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="button" class="btn btn-danger remove-group">Remove</button>
+                </div>
+            `;
 
-        wrapper.appendChild(newGroup);
-    });
+            wrapper.appendChild(newGroup);
+        });
 
-    // Remove row
-    wrapper.addEventListener('click', function(e) {
-        if(e.target.classList.contains('remove-group')){
-            e.target.closest('.venue-screen-group').remove();
-        }
-    });
-
-    // Dynamic screens per venue
-    wrapper.addEventListener('change', function(e) {
-        if(e.target.classList.contains('venue')){
-            const venueSelect = e.target;
-            const screenSelect = venueSelect.closest('.venue-screen-group').querySelector('.screen');
-            const venueId = venueSelect.value;
-
-            if(venueId){
-                fetch(`/api/venues/${venueId}/screens`)
-                    .then(res => res.json())
-                    .then(screens => {
-                        screenSelect.innerHTML = '<option value="">Select Screen</option>';
-                        screenSelect.disabled = false;
-
-                        screens.forEach(screen => {
-                            const option = document.createElement('option');
-                            option.value = screen.id;
-                            option.textContent = screen.name;
-                            option.dataset.rate = screen.daily_rate;
-                            screenSelect.appendChild(option);
-                        });
-                    });
-            } else {
-                screenSelect.innerHTML = '<option value="">Select Screen</option>';
-                screenSelect.disabled = true;
+        // Remove row
+        wrapper.addEventListener('click', function(e) {
+            if(e.target.classList.contains('remove-group')){
+                e.target.closest('.venue-screen-group').remove();
             }
-        }
+        });
+
+        // Dynamic screens per venue
+        wrapper.addEventListener('change', function(e) {
+            if(e.target.classList.contains('venue')){
+                const venueSelect = e.target;
+                const screenSelect = venueSelect.closest('.venue-screen-group').querySelector('.screen');
+                const venueId = venueSelect.value;
+
+                if(venueId){
+                    fetch(`/api/venues/${venueId}/screens`)
+                        .then(res => res.json())
+                        .then(screens => {
+                            screenSelect.innerHTML = '<option value="">Select Screen</option>';
+                            screenSelect.disabled = false;
+
+                            screens.forEach(screen => {
+                                const option = document.createElement('option');
+                                option.value = screen.id;
+                                option.textContent = screen.name;
+                                option.dataset.rate = screen.daily_rate;
+                                screenSelect.appendChild(option);
+                            });
+                        });
+                } else {
+                    screenSelect.innerHTML = '<option value="">Select Screen</option>';
+                    screenSelect.disabled = true;
+                }
+            }
+        });
     });
-});
 </script>
 
 @endsection

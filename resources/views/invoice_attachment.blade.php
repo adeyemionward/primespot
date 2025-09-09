@@ -94,7 +94,7 @@
                 </tr>
                 <tr class="det" style="padding-top: 5px">
                     <td width="20%" class="question">Amount :</td>
-                    <td>#{{$orderDetails->screen->daily_rate * $orderDetails->days}}</td>
+                    <td>N{{number_format($orderDetails->screen->daily_rate * $orderDetails->days)}}</td>
                 </tr>
             </table>
     </td>
@@ -110,7 +110,7 @@
                 {{-- <span style="font-weight: bold"> 75% of #{{$totalCost}}:&nbsp; (#{{ 75/100 * $totalCost}})  must be paid before we can process your order</span> <br><br> --}}
                 <span style="font-weight: bold">BANK&nbsp;DETAILS</span> <br><br>
                 Bank : ECOBANK <br> Acc/No: NAIRA ACCOUNT: 4933060877 <br>Account Name: PRINTLABS LTD</td>
-            <td width="30" align="right">&nbsp;<span style="font-size:20px; padding-right:10px"><span style="font-weight:bold; ">Total Amount:</span> #{{$orderDetails->screen->daily_rate * $orderDetails->days}} </td>
+            <td width="30" align="right">&nbsp;<span style="font-size:20px; padding-right:10px"><span style="font-weight:bold; ">Total Amount:</span> N{{$orderDetails->screen->daily_rate * $orderDetails->days}} </td>
           </tr>
 
         </table></td>

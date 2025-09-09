@@ -65,7 +65,7 @@
                                                                      </tr>
                                                                     <tr class="det">
                                                                         <td width="10%" class="question">Total Amount :</td>
-                                                                        <td>₦{{$booking->items->sum('amount') ?? 0.00}}</td>
+                                                                        <td>₦{{number_format($booking->items->sum('amount')) ?? 0.00}}</td>
                                                                      </tr>
                                                                      <tr class="det">
                                                                         <td width="10%" class="question">Content :</td>
@@ -77,7 +77,7 @@
                                                                             {{ ucfirst($booking->payment_status) ?? 'N/A' }}
                                                                         </td>
                                                                     </tr>
-
+ 
 
                                                                 </table>
                                                                 <br><br>
@@ -102,8 +102,8 @@
 
                                                                                 <td>{{ $item->booking->start_date }}</td>
                                                                                 <td>{{ $item->booking->end_date }}</td>
-                                                                                <td>₦{{$item->amount ?? 0.00}}</td>
-                                                                                <td>₦{{($item->screen->commission_rate/100 * $item->amount) ?? 0.00}} <small>({{$item->screen->commission_rate}}%)</small></td>
+                                                                                <td>₦{{number_format($item->amount) ?? 0.00}}</td>
+                                                                                <td>₦{{(number_format($item->screen->commission_rate/100 * $item->amount)) ?? 0.00}} <small>({{$item->screen->commission_rate}}%)</small></td>
                                                                                 <td>
                                                                                     @if($item->media_path)
                                                                                         <a href="{{asset('media/'.$item->media_path)}}" download style="color: blue">

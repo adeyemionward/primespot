@@ -23,7 +23,7 @@
                  <a class="nav-link" style="cursor: pointer" id="nav-database-tab" data-bs-toggle="modal" data-bs-target="#exampleModal"
                     aria-selected="false">Update Payment Status </a>
 
-                <a class="nav-link "
+                <a class="nav-link" target="_blank"
                     href="{{route('booking_invoice_pdf',request()->id)}}" aria-selected="false">
                     Download Invoice</a>
                    <div class="dropdown-divider"></div>

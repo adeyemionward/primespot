@@ -15,10 +15,9 @@
                     aria-selected="false">View Booking</a>
                    <div class="dropdown-divider"></div>
 
-                <a class="nav-link "
+                <a class="nav-link " target="_blank"
                     href="{{route('booking_invoice_pdf',request()->id)}}" aria-selected="false">
                     Download Invoice</a>
-                   <div class="dropdown-divider"></div>
 
                 {{-- <a class="nav-link <?php if($page == 'edit') echo 'active active_red'  ?>" id="nav-database-tab"
                 href="{{route('customer.bookings.edit', request()->id)}}"

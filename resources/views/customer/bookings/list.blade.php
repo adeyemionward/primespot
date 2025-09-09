@@ -26,23 +26,27 @@
                                 <tr>
                                     <th>S/N</th>
                                     <th>Customer</th>
-                                    <th>Venue</th>
-                                    <th>Screen</th>
+                                    <th>Booking No</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
+                                    <th>No of Days</th>
+                                    <th>Total Amount</th>
                                     <th>Payment Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($bookings as $index => $val)
+                                 @foreach ($bookings as $index => $val)
                                     <tr>
                                         <td>{{$index+1}}</td>
                                         <td>{{$val->user->name}}</td>
-                                        <td>{{$val->screen->venue->name}}</td>
-                                        <td>{{$val->screen->name}}</td>
+                                        <td>{{$val->reference}}</td>
+                                        {{-- <td>{{$val->screen->venue->name}}</td> --}}
+                                        {{-- <td>{{$val->screen->name}}</td> --}}
                                         <td>{{$val->start_date}}</td>
                                         <td>{{$val->end_date}}</td>
+                                        <td>{{$val->days ?? 'N/A'}} Days</td>
+                                        <td>₦{{ number_format($val->items->sum('amount')) ?? 0.00}}</td>
                                         <td class="{{ $val->payment_status_color }}">
                                             {{ ucfirst($val->payment_status) ?? 'N/A' }}
                                         </td>

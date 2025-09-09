@@ -1,7 +1,7 @@
 
 @extends('admin.layout.master')
 @section('content')
-@section('title', 'All Users')
+@section('title', 'All Bookings')
     <div class="content">
         <div class="container-fluid">
             <div class="row mt-2">
@@ -26,7 +26,6 @@
                                 <tr>
                                     <th>S/N</th>
                                     <th>Customer</th>
-                                    {{-- <th>Venue</th>--}}
                                     <th>Booking No</th>
                                     <th>Start Date</th>
                                     <th>End Date</th>
@@ -47,7 +46,7 @@
                                         <td>{{$val->start_date}}</td>
                                         <td>{{$val->end_date}}</td>
                                         <td>{{$val->days ?? 'N/A'}} Days</td>
-                                        <td>₦{{$val->items->sum('amount') ?? 0.00}}</td>
+                                        <td>₦{{ number_format($val->items->sum('amount')) ?? 0.00}}</td>
                                         <td class="{{ $val->payment_status_color }}">
                                             {{ ucfirst($val->payment_status) ?? 'N/A' }}
                                         </td>

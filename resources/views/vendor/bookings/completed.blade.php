@@ -40,8 +40,8 @@
 
                                         <td>{{ $item->booking->start_date }}</td>
                                         <td>{{ $item->booking->end_date }}</td>
-                                        <td>₦{{$item->amount ?? 0.00}}</td>
-                                        <td>₦{{($item->screen->commission_rate/100 * $item->amount) ?? 0.00}} <small>({{$item->screen->commission_rate}}%)</small></td>
+                                        <td>₦{{number_format($item->amount) ?? 0.00}}</td>
+                                        <td>₦{{(number_format($item->screen->commission_rate/100 * $item->amount)) ?? 0.00}} <small>({{$item->screen->commission_rate}}%)</small></td>
                                         <td>
                                             @if($item->media_path)
                                                 <a href="{{asset('media/'.$item->media_path)}}" download style="color: blue">

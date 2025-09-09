@@ -36,6 +36,7 @@
 
                                                         <div class="row g-3 ">
                                                             <div class="col-md-12">
+
                                                                 <table width="100%"  class="details">
                                                                     <tr class="det">
                                                                       <td width="10%" class="question">Booking Id :</td>
@@ -45,14 +46,12 @@
                                                                         <td width="10%" class="question">Customer Name :</td>
                                                                         <td>{{$booking->user->name ?? 'N/A'}}</td>
                                                                     </tr>
-                                                                    <tr class="det">
-                                                                        <td width="10%" class="question">Screen :</td>
-                                                                        <td>{{$booking->screen->name ?? 'N/A'}}</td>
+
+                                                                     <tr class="det">
+                                                                        <td width="10%" class="question">Booking No :</td>
+                                                                        <td>{{$booking->reference ?? 'N/A'}}</td>
                                                                     </tr>
-                                                                    <tr class="det">
-                                                                        <td width="10%" class="question">Venue :</td>
-                                                                        <td>{{$booking->screen->venue->name ?? 'N/A'}}</td>
-                                                                    </tr>
+
                                                                     <tr class="det">
                                                                         <td width="10%" class="question">Start Date :</td>
                                                                         <td>{{$booking->start_date ?? 'N/A'}}</td>
@@ -65,28 +64,70 @@
                                                                         <td width="10%" class="question">No of Days :</td>
                                                                         <td>{{$booking->days.' Days' ?? 'N/A'}}</td>
                                                                      </tr>
-                                                                     <tr class="det">
-                                                                        <td width="10%" class="question">Amount :</td>
-                                                                        <td>₦{{$booking->screen->daily_rate * $booking->days ?? 'N/A'}}</td>
+                                                                    <tr class="det">
+                                                                        <td width="10%" class="question">Total Amount :</td>
+                                                                        <td>₦{{number_format($booking->items->sum('amount')) ?? 0.00}}</td>
                                                                      </tr>
-                                                                     <tr>
-                                                                        <td width="10%" class="question">Media :</td>
-                                                                        <td><a href="{{asset('media/'.$booking->media_path)}}" download style="color: blue">
-                                                                            Download Media
-                                                                        </a></td>
-                                                                    </tr>
                                                                      <tr class="det">
                                                                         <td width="10%" class="question">Content :</td>
                                                                         <td>{{$booking->content ?? 'N/A'}}</td>
                                                                      </tr>
                                                                      <tr class="det">
-                                                                        <td width="10%" class="question">Payment Status :</td>
+                                                                        <td width="20%" class="question">Payment Status :</td>
                                                                         <td class="{{ $booking->payment_status_color }}">
                                                                             {{ ucfirst($booking->payment_status) ?? 'N/A' }}
                                                                         </td>
                                                                     </tr>
 
 
+                                                                </table>
+                                                                <br><br>
+                                                                 <table id="example" class="table no-margin" style="width:100%">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Venue</th>
+                                                                            <th>Screen</th>
+                                                                            <th>Start&nbsp;Date</th>
+                                                                            <th>End&nbsp;Date</th>
+                                                                            <th>Total&nbsp;Amount</th>
+                                                                            {{-- <th>Commission&nbsp;Amount</th> --}}
+                                                                            <th>Media</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                         @foreach($bookingItems as $item)
+                                                                            <tr>
+                                                                                <td>{{ $item->venue->name ?? 'N/A' }}</td>
+                                                                                <td>{{ $item->screen->name ?? 'N/A' }}</td>
+
+                                                                                <td>{{ $item->booking->start_date }}</td>
+                                                                                <td>{{ $item->booking->end_date }}</td>
+                                                                                <td>₦{{number_format($item->amount) ?? 0.00}}</td>
+                                                                                {{-- <td>₦{{(number_format($item->screen->commission_rate/100 * $item->amount)) ?? 0.00}} <small>({{$item->screen->commission_rate}}%)</small></td> --}}
+                                                                                <td>
+                                                                                    @if($item->media_path)
+                                                                                        <a href="{{asset('media/'.$item->media_path)}}" download style="color: blue">
+                                                                                            Download Media
+                                                                                        </a>
+                                                                                    @else
+                                                                                        N/A
+                                                                                    @endif
+                                                                                </td>
+                                                                                {{-- <td><i class="fa fa-trash"></i><a href="{{route('admin.bookings.delete_booking_item',$item->id)}}"> </a></td> --}}
+                                                                                <td>
+                                                                                    <form action="{{ route('admin.bookings.delete_booking_item', $item->id) }}" method="POST" style="display:inline;">
+                                                                                        @csrf
+                                                                                        @method('DELETE')
+                                                                                        <button type="submit" class="btn btn-link text-danger p-0"
+                                                                                            onclick="return confirm('Are you sure you want to delete this booking item?');">
+                                                                                            <i class="fa fa-trash"></i>
+                                                                                        </button>
+                                                                                    </form>
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endforeach
+                                                                    </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
