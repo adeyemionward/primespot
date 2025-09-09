@@ -19,7 +19,12 @@
                 href="{{route('admin.screens.edit', request()->id)}}"
                 aria-selected="false">Edit screen </a>
                <div class="dropdown-divider"></div>
-                
+
+               <a class="nav-link" id="nav-database-tab"onclick="return confirm('Are you sure you want to delete this screen?');"
+                href="{{route('admin.screens.delete', request()->id)}}"
+                aria-selected="false">Delete screen </a>
+               <div class="dropdown-divider"></div>
+
                 @if ($screen->status == 'available')
                    <a class="nav-link" id="nav-database-tab" onclick="return confirm('Are you sure you want to deactivate this screen?');"
                     href="{{route('admin.screens.deactivate', request()->id)}}"
@@ -29,7 +34,7 @@
                     href="{{route('admin.screens.activate', request()->id)}}"
                     aria-selected="false">Activate screen </a>
                 @endif
-                
+
 
             </div>
 

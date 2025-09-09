@@ -69,6 +69,9 @@ class ScreenController extends Controller
     public function show($id)
     {
         $screen = Screen::where('id',$id)->first();
+        if(!$screen){
+            return redirect()->back()->with('flash_error','Screen not found');
+        }
         return view('admin.screens.view', compact('screen'));
     }
 
@@ -81,53 +84,53 @@ class ScreenController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    // Find the existing screen record.
-    $screen = Screen::find($id);
+    {
+        // Find the existing screen record.
+        $screen = Screen::find($id);
 
-    // If the screen doesn't exist, return an error.
-    if (!$screen) {
-        return redirect()->back()->with('flash_error', 'Screen not found.');
-    }
-
-    // Adjust validation rules, especially for 'name' and 'code' to ignore the current record.
-    $validate = Validator::make($request->all(), [
-        'name' => ['required', 'string', 'max:50'],
-        'code' => ['required', 'max:50'],
-        'resolution' => ['required', 'string', 'max:50'],
-        'orientation' => ['required', 'string'],
-        'status' => ['required'],
-        'venue' => ['required'],
-        'daily_rate' => ['required', 'string'],
-    ]);
-
-    // If validation fails, return with errors.
-    if ($validate->fails()) {
-        return redirect()->back()->withErrors($validate)->withInput();
-    }
-
-    try {
-        // Update the screen's attributes.
-        $screen->name = $request->name;
-        $screen->code = $request->code;
-        $screen->resolution = $request->resolution;
-        $screen->orientation = $request->orientation;
-        $screen->status = $request->status;
-        $screen->venue_id = $request->venue;
-         $screen->host_id        = $request->host_id;
-        $screen->daily_rate = $request->daily_rate;
-        $screen->commission_rate   = $request->commission_rate;
-        $screen->save();
-
-        if ($screen) {
-            return redirect(route('admin.screens.list'))->with('flash_success', 'Screen has been updated successfully.');
+        // If the screen doesn't exist, return an error.
+        if (!$screen) {
+            return redirect()->back()->with('flash_error', 'Screen not found.');
         }
-    } catch (\Exception $th) {
-        // Log the error for debugging.
-        \Log::error($th);
-        return redirect()->back()->with('flash_error', 'An Error Occured: Please try later');
+
+        // Adjust validation rules, especially for 'name' and 'code' to ignore the current record.
+        $validate = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:50'],
+            'code' => ['required', 'max:50'],
+            'resolution' => ['required', 'string', 'max:50'],
+            'orientation' => ['required', 'string'],
+            'status' => ['required'],
+            'venue' => ['required'],
+            'daily_rate' => ['required', 'string'],
+        ]);
+
+        // If validation fails, return with errors.
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate)->withInput();
+        }
+
+        try {
+            // Update the screen's attributes.
+            $screen->name = $request->name;
+            $screen->code = $request->code;
+            $screen->resolution = $request->resolution;
+            $screen->orientation = $request->orientation;
+            $screen->status = $request->status;
+            $screen->venue_id = $request->venue;
+            $screen->host_id        = $request->host_id;
+            $screen->daily_rate = $request->daily_rate;
+            $screen->commission_rate   = $request->commission_rate;
+            $screen->save();
+
+            if ($screen) {
+                return redirect(route('admin.screens.list'))->with('flash_success', 'Screen has been updated successfully.');
+            }
+        } catch (\Exception $th) {
+            // Log the error for debugging.
+            \Log::error($th);
+            return redirect()->back()->with('flash_error', 'An Error Occured: Please try later');
+        }
     }
-}
 
     public function activate($id){
         $screen = Screen::where('id',$id)->first();
@@ -142,6 +145,18 @@ class ScreenController extends Controller
         $screen->save();
         return back()->with("flash_success","screen deactivated successfully");
     }
+
+    public function destroy($id)
+    {
+        $screen = Screen::findOrFail($id);
+        if(!$screen){
+            return redirect()->back()->with('flash_error','Screen not found');
+        }
+        $screen->delete(); // soft delete (sets deleted_at)
+
+        return redirect(route('admin.screens.list'))->with('flash_success','Screen has been deleted');
+    }
+
 
     public function getVenueScreens(Venue $venue)
     {
